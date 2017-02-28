@@ -4,20 +4,27 @@ from matrix import *
 
 def draw_lines( matrix, screen, color ):
     for i in range(0,len(matrix),2):
-        draw_line(matrix[i][0], matrix[i][1],
-                  matrix[i+1][0], matrix[i+1][1])
-    return 1
+        if i+1 != len(matrix):
+            print(matrix[i][0])
+            print(matrix[i][1])
+            print(matrix[i+1][0])
+            print(matrix[i+1][1])
+            draw_line(matrix[i][0], matrix[i][1],
+                      matrix[i+1][0], matrix[i+1][1], screen, color)
         
 def add_edge( matrix, x0, y0, z0, x1, y1, z1 ):
     add_point(matrix,x0,y0,z0)
     add_point(matrix,x1,y1,z1)
-    return 1
 
 def add_point( matrix, x, y, z=0 ):
-    pass
+    for i in range(len(matrix)):
+        if matrix[i][3] == 0.0:
+            matrix[i] = [x,y,z,1.0]
+            return 1
+    matrix.append([x,y,z,1.0])
+    
 
 def draw_line( x0, y0, x1, y1, screen, color ):
-
     #swap points if going right -> left
     if x0 > x1:
         xt = x0
