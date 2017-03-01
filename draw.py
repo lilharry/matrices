@@ -4,11 +4,8 @@ from matrix import *
 
 def draw_lines( matrix, screen, color ):
     for i in range(0,len(matrix),2):
-        if i+1 != len(matrix):
-            print(matrix[i][0])
-            print(matrix[i][1])
-            print(matrix[i+1][0])
-            print(matrix[i+1][1])
+        if i != len(matrix)-1:
+            #print "drawing line: (%d,%d) to (%d,%d)"%(matrix[i][0],matrix[i][1],matrix[i+1][0],matrix[i+1][1])        
             draw_line(matrix[i][0], matrix[i][1],
                       matrix[i+1][0], matrix[i+1][1], screen, color)
         
@@ -20,7 +17,7 @@ def add_point( matrix, x, y, z=0 ):
     for i in range(len(matrix)):
         if matrix[i][3] == 0.0:
             matrix[i] = [x,y,z,1.0]
-            return 1
+            return
     matrix.append([x,y,z,1.0])
     
 
